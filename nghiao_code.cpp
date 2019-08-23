@@ -159,6 +159,21 @@ DMatch.imgIdx - Index of the train image.
                 findFundamentalMat(src, dst, FM_RANSAC, 3.0, 0.99, mask);
 
 ///////////IDK about the code given below
+               /*
+ cv::Mat::clone (       )   const
+Creates a full copy of the array and the underlying data.
+
+The method creates a full copy of the array. The original step[] is not taken into account. 
+So, the array copy is a continuous array occupying total()*elemSize() bytes.
+               */
+
+                /*
+ cv::Mat::push_back (   const _Tp &     elem    )   
+Adds elements to the bottom of the matrix.
+
+The methods add one or more elements to the bottom of the matrix. They emulate the corresponding method of the STL vector class.
+When elem is Mat , its type and the number of columns must be the same as in the container matrix.
+                */
                 Mat canvas = img_pose_i.img.clone();
                 canvas.push_back(img_pose_j.img.clone());
 
@@ -227,7 +242,7 @@ DMatch.imgIdx - Index of the train image.
                     //hence, push back the keypoint corresponding to the (match_index)th index om the (i+1)th image in the dst array
                     dst.push_back(cur.kp[match_idx].pt);
 
-//we push back the indexes of the keypoints for whihch matches exist in the kp_used vector of integers
+//we push back the indices of the keypoints for which matches exist in the kp_used vector of integers
                     kp_used.push_back(k);
                 }
             }
@@ -245,6 +260,8 @@ DMatch.imgIdx - Index of the train image.
 	 In the output mask only inliers which pass the cheirality check
 */
 			//the recoverPose function recovers the R and t matrices from the Essential matrix
+            
+//if we are in the ith iteration of the for loop, src is the array of points in the img_pose[i] and dst is the corresponding array of points in the img_pose[i+1]
             recoverPose(E, dst, src, local_R, local_t, FOCAL_LENGTH, pp, mask);
 
             //rowRange is the Range of the m rows to take. 
@@ -290,6 +307,7 @@ note that in points4D, ****************HOMOGENUOUS coordinates************ shoul
 
             Mat points4D;
             //we dont know the scale as of now, because the t vector in T is always a unit vector
+            //this is triangulation from 2 images
             triangulatePoints(prev.P, cur.P, src, dst, points4D);
 
             // Scale the new 3d points to be similar to the existing 3d points (landmark)
