@@ -1,15 +1,13 @@
-# slam
+# Sample slam concept implementation
 
-These are all the codes written related to SLAM
+* orb.py - feature detection implemented 
 
-orb.py - feature detection implemented 
+* fma.py - feature detection and mapping in python
 
-fma.py - feature detection and mapping in python
+* FeatureMappingAndPoseEstimation.cpp - feature mapping implemented in C++
 
-FeatureMappingAndPoseEstimation.cpp - feature mapping implemented in C++
+* video.py - feature mapping in real time, comparing an image with real time video
 
-video.py - feature mapping in real time, comparing an image with real time video
+* CameraCalibration.cpp - code to calibrate the webcam
 
-CameraCalibration.cpp - code to calibrate the webcam
-
-nghiao_code.cpp - "well commented" code of nghiao
+* sfm.cpp - "well commented" code for structure from motion, help taken from nghaio
