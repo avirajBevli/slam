@@ -1,3 +1,4 @@
+// Structure from motion == SFM
 #include <opencv2/features2d.hpp>
 #include <opencv2/highgui.hpp>
 #include <opencv2/opencv.hpp>
